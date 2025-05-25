@@ -2,8 +2,8 @@ from setuptools import setup, find_packages
 
 setup(
     name='myUtils',
-	packages=find_packages(),
-    version='1.0.4',
+	packages=['myUtils'],
+    version='1.0.5',
     install_requires=[],
     author='K-Mart',
     description='My utility functions',
