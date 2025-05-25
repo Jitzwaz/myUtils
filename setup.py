@@ -4,7 +4,6 @@ setup(
     name='myUtils',
 	packages=['myUtils'],
     version='1.0.1',
-    packages=find_packages(),
     install_requires=[],
     author='K-Mart',
     description='My utility functions',
