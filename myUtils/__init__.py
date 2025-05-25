@@ -69,7 +69,10 @@ def displayDictionary(d: dict):
 		None 
 	"""
 	for key, value, in d.items():
-		print(f'{key}: {", ".join(value)}')
+		try:
+			print(f'{key}: {value}')
+		except ValueError:
+			print(f'ValueError: {value} is not iterable.')
 
 def invertDictionary(d: dict, debugMode: bool): 
 	"""
