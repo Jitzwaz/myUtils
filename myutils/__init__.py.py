@@ -73,5 +73,3 @@ def displayList(l):
 	'''
 	for val in l:
 		print(val)
-
-print('test')
