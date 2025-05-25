@@ -20,7 +20,7 @@ def calcTime(func, args):
 		end = time.perf_counter()
 		return (end-start)*1000
 	
-def newline(lines=None):
+def newline(lines=1):
 	'''
 	Prints a specified number of new lines. \n
 	Args: \n
@@ -28,8 +28,6 @@ def newline(lines=None):
 	Returns: \n
 		None \n
 	'''
-	if not lines: # Allows for a quick newline() to just make 1
-		print("\n", end="")
 	try:
 		if type(lines) is not int:
 			lines = int(lines)
