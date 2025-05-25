@@ -1,6 +1,6 @@
 import time
 
-def calcTime(func: function, *args):
+def calcTime(func, *args):
 	"""
 	Calculates the time taken to execute a function.
 
