@@ -174,7 +174,7 @@ def updatePackage(packageName, username):
 		f'git+https://github.com/{username}/{packageName}.git'
 	])
 
-def rollbackPackage(packageName, username, version):
+def revertPackage(packageName, username, version):
 	"""
 	Reverts the specified packaged to the desired version.
 
