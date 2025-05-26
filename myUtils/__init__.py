@@ -4,7 +4,7 @@ import sys
 import re
 import urllib.request
 
-__version__ = '1.1.8'
+__version__ = '1.2.8'
 
 def calcTime(func, *args):
 	"""
