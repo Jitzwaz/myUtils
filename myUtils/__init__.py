@@ -4,7 +4,7 @@ import sys
 import re
 import urllib.request
 
-__version__ = '1.2.11'
+__version__ = '1.3.11'
 
 def calcTime(func, *args):
 	"""
@@ -136,8 +136,8 @@ def getPackageVersion(packageName, username):
 	Retrieves the version number of a package, assuming the version is in the __init__.py file.
 	Will print any errors as well as return them for analysis.
 	Args:
-		packageName: The name of the package.
-		username: The github username of the author in the link.
+		packageName (string): The name of the package.
+		username (string): The github username of the author in the link.
 	Returns:
 		Version number (string)
 		Exception (Any)
@@ -159,8 +159,8 @@ def updatePackage(packageName, username):
 	Updates the specified package via pip.
 
 	Args:
-		packageName: The name of the package.
-		username: The github username of the author in the link.
+		packageName (string): The name of the package.
+		username (string): The github username of the author in the link.
 	Returns:
 		None
 	"""
@@ -172,4 +172,25 @@ def updatePackage(packageName, username):
 		'--upgrade',
 		'--no-cache-dir',
 		f'git+https://github.com/{username}/{packageName}.git'
+	])
+
+def rollbackPackage(packageName, username, version):
+	"""
+	Reverts the specified packaged to the desired version.
+
+	Args:
+		packageName (string): The name of the package.
+		username (string): The github username of the author in the link.
+		version (string): The version to revert to.
+	Returns:
+		None
+	"""
+	subprocess.run([
+		sys.executable,
+		'-m',
+		'pip',
+		'install',
+		'--upgrade',
+		'--no-cache-dir',
+		f'git+https://github.com/{username}/{packageName}.git@{version}'
 	])
