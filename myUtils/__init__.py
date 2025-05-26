@@ -1,4 +1,10 @@
 import time
+import subprocess
+import sys
+import re
+import urllib.request
+
+__version__ = '1.1.8'
 
 def calcTime(func, *args):
 	"""
@@ -124,3 +130,26 @@ def displayList(l: list):
 	"""
 	for val in l:
 		print(val)
+
+def getPackageVersion(packageName, username):
+	url = f'https://raw.githubusercontent.com/{username}/{packageName}/main/{packageName}/__init__.py'
+	try:
+		with urllib.request.urlopen(url) as response:
+			text = response.read().decode('utf-8')
+			match = re.search(r"__version__\s*=\s*['\"]([^'\"]+)['\"]", text)
+			if match:
+				return match.group(1)
+	except Exception as e:
+		print(f'Failed to fetch version of {packageName}: {end=}')
+	return None
+
+def updatePackage(packageName, username):
+	subprocess.run([
+		sys.executable,
+		'-m',
+		'pip',
+		'install',
+		'--upgrade',
+		'--no cache-dir',
+		f'git+https://github.com/{username}/{packageName}.git'
+	])
