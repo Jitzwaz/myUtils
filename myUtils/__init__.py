@@ -170,6 +170,6 @@ def updatePackage(packageName, username):
 		'pip',
 		'install',
 		'--upgrade',
-		'--no cache-dir',
+		'--no-cache-dir',
 		f'git+https://github.com/{username}/{packageName}.git'
 	])
