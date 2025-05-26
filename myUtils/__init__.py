@@ -4,7 +4,7 @@ import sys
 import re
 import urllib.request
 
-__version__ = '1.2.9'
+__version__ = '1.2.10'
 
 def calcTime(func, *args):
 	"""
@@ -132,6 +132,16 @@ def displayList(l: list):
 		print(val)
 
 def getPackageVersion(packageName, username):
+	"""
+	Retrieves the version number of a package, assuming the version is in the __init__.py file.
+	Will print any errors as well as return them for analysis.
+	Args:
+		packageName: The name of the package.
+		username: The github username of the author in the link.
+	Returns:
+		Version number (string)
+		Exception (Any)
+	"""
 	url = f'https://raw.githubusercontent.com/{username}/{packageName}/main/{packageName}/__init__.py'
 	try:
 		with urllib.request.urlopen(url) as response:
@@ -141,9 +151,19 @@ def getPackageVersion(packageName, username):
 				return match.group(1)
 	except Exception as e:
 		print(f'Failed to fetch version of {packageName}: {end=}')
+		return e
 	return None
 
 def updatePackage(packageName, username):
+	"""
+	Updates the specified package via pip.
+
+	Args:
+		packageName: The name of the package.
+		username: The github username of the author in the link.
+	Returns:
+		None
+	"""
 	subprocess.run([
 		sys.executable,
 		'-m',
