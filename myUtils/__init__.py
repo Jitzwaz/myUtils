@@ -4,7 +4,7 @@ import sys
 import re
 import urllib.request
 
-__version__ = '1.3.11'
+__version__ = '1.3.12'
 
 def calcTime(func, *args):
 	"""
@@ -185,7 +185,9 @@ def rollbackPackage(packageName, username, version):
 	Returns:
 		None
 	"""
-	subprocess.run([
+	subprocess.run([sys.executable, "-m", "pip", "uninstall", "-y", packageName]) # Extra deletion just incase
+
+	result = subprocess.run([
 		sys.executable,
 		'-m',
 		'pip',
@@ -193,4 +195,9 @@ def rollbackPackage(packageName, username, version):
 		'--upgrade',
 		'--no-cache-dir',
 		f'git+https://github.com/{username}/{packageName}.git@{version}'
-	])
+	], capture_output=True, text=True)
+
+	if result.returncode !=0:
+		print(f'[ERROR] Rollback failed:\n{result.siderr}')
+	else:
+		print(f'[INFO] Rolled back {packageName} to {version}')
