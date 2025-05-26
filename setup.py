@@ -3,7 +3,7 @@ import re
 
 def getVersion():
 	with open('myUtils/__init__.py', 'r') as file:
-		content = file.read
+		content = file.read()
 	match = re.search(r"__version__\s*=\s*'([^']+)'", content)
 	if match:
 		return match.group(1)
