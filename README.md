@@ -23,3 +23,9 @@ Just some simple utility functions I made to make life a bit easier.
 
 - `displayList(l)`:  
   Same idea as `displayDictionary`, but for lists instead.
+  
+- `getPackageVersion(packageName, username`
+  Gets the version of a package from github, useful as a helper function for `updatePackage`
+
+- `updatePackage(packageName, username)`
+  Updates the specified package from github. **WARNING:** Does not do any version checking on it's own. You'll have to use `getPackageVersion` for that.
