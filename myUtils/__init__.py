@@ -217,14 +217,12 @@ letterList = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', '
 symbolsList = ['!', '@', '#', '$', '%', '^', '&', '*', '?' '.' ',' ';' ':']
 
 def genWord(length, *choices): # Random choice of characters, helper function to generate list/whatever other gens
-	output = ''
+	output = []
 	for i in range(length):
-		listToPick = random.randint(len(choices))
+		listToPick = random.randint(0, len(choices)-1)
 		charIndex = random.randint(0, len(letterList)-1)
-		output.join(letterList[charIndex])
-	return output
-
-print(genWord)
+		output.append(letterList[charIndex])
+	return ''.join(output)
 
 def generateList(contains, length):
 	pass
