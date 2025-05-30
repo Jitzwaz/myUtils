@@ -7,7 +7,7 @@ import urllib.request
 import random
 import os
 
-__version__ = '1.3.0'
+__version__ = '1.3.1'
 
 def calcTime(func, *args):
 	"""
@@ -77,11 +77,12 @@ def displayDictionary(d: dict):
 	Returns:
 		None 
 	"""
-	for key, value, in d.items():
-		try:
-			print(f'{key}: {value}')
-		except ValueError:
-			print(f'ValueError: {value} is not iterable.')
+	if len(d) > 0:
+		for key, value, in d.items():
+			try:
+				print(f'{key}: {value}')
+			except ValueError:
+				print(f'ValueError: {value} is not iterable.')
 
 def invertDictionary(d: dict, debugMode: bool): 
 	"""
@@ -131,8 +132,9 @@ def displayList(l: list):
 		None
 
 	"""
-	for val in l:
-		print(val)
+	if len(l) > 0:
+		for val in l:
+			print(val)
 
 def getPackageVersion(packageName, username):
 	"""
@@ -212,8 +214,13 @@ symbolsList = ['!', '@', '#', '$', '%', '^', '&', '*', '?' '.' ',' ';' ':']
 
 def genWord(length, *choices): # Random choice of characters, helper function to generate list/whatever other gens
 	output = ''
-	for char in range(length):
-		random.randint()
+	for i in range(length):
+		listToPick = random.randint(len(choices))
+		charIndex = random.randint(0, len(letterList)-1)
+		output.join(letterList[charIndex])
+	return output
+
+print(genWord)
 
 def generateList(contains, length):
 	pass
