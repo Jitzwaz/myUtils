@@ -1,8 +1,11 @@
+# five hundred imports
 import time
 import subprocess
 import sys
 import re
 import urllib.request
+import random
+import os
 
 __version__ = '1.3.0'
 
@@ -142,16 +145,16 @@ def getPackageVersion(packageName, username):
 		Version number (string)
 		Exception (Any)
 	"""
-	url = f'https://raw.githubusercontent.com/{username}/{packageName}/main/{packageName}/__init__.py'
+	url = f'https://raw.githubusercontent.com/{username}/{packageName}/main/{packageName}/__init__.py' # f string to hold the url for non pyPI packages
 	try:
 		with urllib.request.urlopen(url) as response:
 			text = response.read().decode('utf-8')
-			match = re.search(r"__version__\s*=\s*['\"]([^'\"]+)['\"]", text)
+			match = re.search(r"__version__\s*=\s*['\"]([^'\"]+)['\"]", text) # looks for version string
 			if match:
 				return match.group(1)
 	except Exception as e:
-		print(f'Failed to fetch version of {packageName}: {end=}')
-		return e
+		print(f'Failed to fetch version of {packageName}: {e}') # quick error message just incase something happens
+		return e # returns error for further processing
 	return None
 
 def updatePackage(packageName, username):
@@ -171,7 +174,7 @@ def updatePackage(packageName, username):
 		'install',
 		'--upgrade',
 		'--no-cache-dir',
-		f'git+https://github.com/{username}/{packageName}.git'
+		f'git+https://github.com/{username}/{packageName}.git' # same f-string url thing as above and runs a complete reinstall for a clean environment
 	])
 
 def revertPackage(packageName, username, version):
@@ -201,3 +204,22 @@ def revertPackage(packageName, username, version):
 		print(f'[ERROR] Rollback failed:\n{result.siderr}')
 	else:
 		print(f'[INFO] Rolled back {packageName} to {version}')
+
+# vars for generation stuff
+varNameList = ['value', 'key', 'item', 'object']
+letterList = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+symbolsList = ['!', '@', '#', '$', '%', '^', '&', '*', '?' '.' ',' ';' ':']
+
+def genWord(length, *choices): # Random choice of characters, helper function to generate list/whatever other gens
+	output = ''
+	for char in range(length):
+		random.randint()
+
+def generateList(contains, length):
+	pass
+
+def filesCheck(filesDict, path): # Like a POST, should be supplied with a dictionary like dir: fileA, fileB, or dir: dirA, dirB, or something. check os.walk
+	pass
+
+def repairDirectory(source, files): # Repairs the directory by downloading missing files from the provided source? probably a step 2 from filescheck
+	pass
