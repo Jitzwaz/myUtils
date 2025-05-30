@@ -77,12 +77,14 @@ def displayDictionary(d: dict):
 	Returns:
 		None 
 	"""
-	if len(d) > 0:
+	try:
 		for key, value, in d.items():
 			try:
 				print(f'{key}: {value}')
 			except ValueError:
 				print(f'ValueError: {value} is not iterable.')
+	except Exception as e:
+		print(f'myUtils error: {e}')
 
 def invertDictionary(d: dict, debugMode: bool): 
 	"""
@@ -132,9 +134,11 @@ def displayList(l: list):
 		None
 
 	"""
-	if len(l) > 0:
+	try:
 		for val in l:
 			print(val)
+	except Exception as e:
+		print(f'myUtils error: {e}')
 
 def getPackageVersion(packageName, username):
 	"""
