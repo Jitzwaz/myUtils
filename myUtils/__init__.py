@@ -211,6 +211,8 @@ def revertPackage(packageName, username, version):
 	else:
 		print(f'[INFO] Rolled back {packageName} to {version}')
 
+#Version 1.4 stuff
+
 # vars for generation stuff
 varNameList = ['value', 'key', 'item', 'object']
 letterList = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
@@ -227,7 +229,10 @@ def genWord(length, *choices): # Random choice of characters, helper function to
 def generateList(contains, length):
 	pass
 
-def filesCheck(filesDict, path): # Like a POST, should be supplied with a dictionary like dir: fileA, fileB, or dir: dirA, dirB, or something. check os.walk
+def fileStructureBuilder(path): # Use os.walk or something. check testing file in general python folder?
+	pass
+
+def filesCheck(filesDict, path): # Like a POST, should be supplied with a dictionary like dir: fileA, fileB, or dir: dirA, dirB, or something. check os.walk out for building a dictionary to use.
 	pass
 
 def repairDirectory(source, files): # Repairs the directory by downloading missing files from the provided source? probably a step 2 from filescheck
