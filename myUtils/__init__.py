@@ -6,8 +6,10 @@ import re
 import urllib.request
 import random
 import os
+import keyboard
+import inspect
 
-__version__ = '1.3.1'
+__version__ = '1.4.1'
 
 def calcTime(func, *args):
 	"""
@@ -237,3 +239,38 @@ def filesCheck(filesDict, path): # Like a POST, should be supplied with a dictio
 
 def repairDirectory(source, files): # Repairs the directory by downloading missing files from the provided source? probably a step 2 from filescheck
 	pass
+
+def performAction(validKeys,  action, confirm=False, confText=None, validAgrees=['y', 'yes'], args=None):
+	if confText == None: # stupid ass python not letting me do it in the args
+		confText = f'Are you sure you want to {action}'
+	while True:
+		print('perfAction running')
+		keyStroke = keyboard.read_key() # credit card information stealer (JOKE)
+		if keyStroke in validKeys: # checking the list of valid keystrokes
+			if inspect.isfunction(action):
+				if confirm == True:
+					choice = input(confText)
+					if choice in validAgrees:
+						action(args)
+						break
+				elif confirm == False:
+					action(args)
+					break
+			elif callable(action):
+				if confirm == True:
+					choice = input(confText)
+					if choice in validAgrees:
+						action(args)
+						break
+				elif confirm == False:
+					action(args)
+					break
+			else:
+				if confirm == True:
+					choice = input(confText)
+					if choice in validAgrees:
+						action
+						break
+				elif confirm == False:
+					action
+					break
